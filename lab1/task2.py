@@ -34,6 +34,8 @@ def zTR(x):
 
 def dispersion(x):
     return np.std(x) ** 2
+
+
 def print_table_rows(E, D, E_name, D_name):
     strTmp = E_name + " & " + str(E[0])
     for e in range(1, len(E)):
@@ -63,13 +65,14 @@ def print_table_rows(E, D, E_name, D_name):
     print("\\hline")
     return
 
+
 def print_table_normal(sizes : list, repeats : int):
     for size in sizes:
         means, meds, zRs, zQs, zTRs = [], [], [], [], []
         table = [means, meds, zRs, zQs, zTRs]
         E, D = [], []
         for i in range(repeats):
-            distr = norm.rvs(size = size)
+            distr = norm.rvs(size = size, loc = 0, scale = 1)
             distr.sort()
             means.append(mean(distr))
             meds.append(median(distr))
@@ -82,4 +85,93 @@ def print_table_normal(sizes : list, repeats : int):
         #print("size: " + str(size))
         print_table_rows(E, D, "Normal E(z) " + str(size), "Normal D(z) " + str(size))
     return
-print_table_normal([10, 50], 1000)
+
+def print_table_cauchy(sizes : list, repeats : int):
+    for size in sizes:
+        means, meds, zRs, zQs, zTRs = [], [], [], [], []
+        table = [means, meds, zRs, zQs, zTRs]
+        E, D = [], []
+        for i in range(repeats):
+            distr = cauchy.rvs(size = size, loc = 0, scale = 1)
+            distr.sort()
+            means.append(mean(distr))
+            meds.append(median(distr))
+            zRs.append(zR(distr))
+            zQs.append(zQ(distr))
+            zTRs.append(zTR(distr))
+        for column in table:
+            E.append(round(mean(column), 6))
+            D.append(round(dispersion(column), 6))
+        #print("size: " + str(size))
+        print_table_rows(E, D, "cauchy E(z) " + str(size), "cauchy D(z) " + str(size))
+    return
+
+def print_table_poisson(sizes : list, repeats : int):
+    for size in sizes:
+        means, meds, zRs, zQs, zTRs = [], [], [], [], []
+        table = [means, meds, zRs, zQs, zTRs]
+        E, D = [], []
+        for i in range(repeats):
+            distr = poisson.rvs(10, size = size)
+            distr.sort()
+            means.append(mean(distr))
+            meds.append(median(distr))
+            zRs.append(zR(distr))
+            zQs.append(zQ(distr))
+            zTRs.append(zTR(distr))
+        for column in table:
+            E.append(round(mean(column), 6))
+            D.append(round(dispersion(column), 6))
+        #print("size: " + str(size))
+        print_table_rows(E, D, "poisson E(z) " + str(size), "poisson D(z) " + str(size))
+    return
+
+def print_table_laplace(sizes : list, repeats : int):
+    for size in sizes:
+        means, meds, zRs, zQs, zTRs = [], [], [], [], []
+        table = [means, meds, zRs, zQs, zTRs]
+        E, D = [], []
+        for i in range(repeats):
+            distr = laplace.rvs(size = size, loc = 0, scale = 1/m.sqrt(2))
+            distr.sort()
+            means.append(mean(distr))
+            meds.append(median(distr))
+            zRs.append(zR(distr))
+            zQs.append(zQ(distr))
+            zTRs.append(zTR(distr))
+        for column in table:
+            E.append(round(mean(column), 6))
+            D.append(round(dispersion(column), 6))
+        #print("size: " + str(size))
+        print_table_rows(E, D, "laplace E(z) " + str(size), "laplace D(z) " + str(size))
+    return
+
+def print_table_uniform(sizes : list, repeats : int):
+    for size in sizes:
+        means, meds, zRs, zQs, zTRs = [], [], [], [], []
+        table = [means, meds, zRs, zQs, zTRs]
+        E, D = [], []
+        for i in range(repeats):
+            distr = uniform.rvs(size = size, loc = -m.sqrt(3), scale = 2 * m.sqrt(3))
+            distr.sort()
+            means.append(mean(distr))
+            meds.append(median(distr))
+            zRs.append(zR(distr))
+            zQs.append(zQ(distr))
+            zTRs.append(zTR(distr))
+        for column in table:
+            E.append(round(mean(column), 6))
+            D.append(round(dispersion(column), 6))
+        #print("size: " + str(size))
+        print_table_rows(E, D, "uniform E(z) " + str(size), "uniform D(z) " + str(size))
+    return
+
+def do_task2(sizes:list):
+    print_table_uniform(sizes, 1000)
+    print_table_laplace(sizes, 1000)
+    print_table_normal(sizes, 1000)
+    print_table_cauchy(sizes, 1000)
+    print_table_poisson(sizes, 1000)
+
+
+do_task2([10, 100, 1000])
