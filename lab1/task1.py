@@ -15,10 +15,10 @@ def plot_poisson(sizes:list, x_name : str, y_name : str):
         fig, ax = plt.subplots(1,1)
 
         hist = poisson.rvs(10, size = size)
-        n = poisson(10)                                    #freeze the distribution
+        n = poisson(10)                                                 #freeze the distribution
         
         x = np.arange(poisson.ppf(0.01, 10), poisson.ppf(0.99, 10))     #ppf returns the value x of the variable that has a given cumulative distribution probability (cdf)
-        y = n.pmf(x)                                       #pdf returns the respective probability values
+        y = n.pmf(x)                                                    #pdf returns the respective probability values
         
         ax.plot(x, y, 'k', lw  = 2)
         ax.hist(hist, density=True, bins='auto', histtype='stepfilled', alpha=0.5)
@@ -34,7 +34,7 @@ def plot_norm(sizes:list, x_name : str, y_name : str):
     for size in sizes:
         fig, ax = plt.subplots(1,1)
         
-        n = norm(loc = 0, scale = 1)                                       #freeze the distribution
+        n = norm(loc = 0, scale = 1)                       #freeze the distribution
        
         x = np.linspace(n.ppf(0.01), n.ppf(0.99), 100)     #ppf returns the value x of the variable that has a given cumulative distribution probability (cdf)
         y = n.pdf(x)                                       #pdf returns the respective probability values
@@ -52,7 +52,7 @@ def plot_cauchy(sizes:list, x_name : str, y_name : str):
     for size in sizes:
         fig, ax = plt.subplots(1,1)
         
-        n = cauchy(loc = 0, scale = 1)                                       #freeze the distribution
+        n = cauchy(loc = 0, scale = 1)                     #freeze the distribution
        
         x = np.linspace(n.ppf(0.01), n.ppf(0.99), 100)     #ppf returns the value x of the variable that has a given cumulative distribution probability (cdf)
         y = n.pdf(x)                                       #pdf returns the respective probability values
