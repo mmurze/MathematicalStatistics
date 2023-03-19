@@ -30,7 +30,7 @@ def plot_poisson(sizes:list, x_name : str, y_name : str):
         plt.savefig(FOLDER_FOR_SAVE + "poisson" + str(size) + ".png")
         plt.show()
 
-def plot_norm(sizes:list, x_name : str, y_name : str):
+def plot_normal(sizes:list, x_name : str, y_name : str):
     for size in sizes:
         fig, ax = plt.subplots(1,1)
         
@@ -105,7 +105,7 @@ def plot_uniform(sizes:list, x_name : str, y_name : str):
 def do_task1(sizes:list):
     plot_uniform(sizes, "uniformNumbers", "Density")
     plot_laplace(sizes, "laplaceNumbers", "Density")
-    plot_norm(sizes, "normalNumbers", "Density")
+    plot_normal(sizes, "normalNumbers", "Density")
     plot_cauchy(sizes, "cauchyNumbers", "Density")
     plot_poisson(sizes, "poissonNumbers", "Density")
 

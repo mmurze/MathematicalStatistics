@@ -8,6 +8,7 @@ from scipy.stats import laplace
 from scipy.stats import poisson
 from scipy.stats import uniform
 
+<<<<<<< HEAD
 def emissions(x, size):
     count = 0
     q1, q3 = np.quantile(x, [0.25, 0.75])
@@ -71,3 +72,8 @@ def do_task3(sizes):
 
 sizes = [20, 100]
 do_task3(sizes)
+=======
+def moustaches(data):
+    q_1, q_3 = np.quantile(data, [0.25, 0.75])
+    return q_1 - 3 / 2 * (q_3 - q_1), q_3 + 3 / 2 * (q_3 - q_1)
+>>>>>>> 017c78d8a43a6212dfb39e195c81b1478aed92c8
