@@ -8,6 +8,8 @@ from scipy.stats import laplace
 from scipy.stats import poisson
 from scipy.stats import uniform
 
+FOLDER_FOR_SAVE = "./graphics/"
+
 def emissions(x, size):
     count = 0
     q1, q3 = np.quantile(x, [0.25, 0.75])
@@ -60,7 +62,8 @@ def plot_boxplot_Tukey(sizes : list, rvs_and_name):
     ax.boxplot(result, vert = 0)
     ax.set_yticklabels(sizes)
     plt.title(rvs_and_name(0)[1])
-    plt.show()
+    plt.savefig(FOLDER_FOR_SAVE+"3__" + rvs_and_name(0)[1] +".png")
+    plt.clf()
 
 def do_task3(sizes):
     plot_boxplot_Tukey(sizes, normal_rvs)

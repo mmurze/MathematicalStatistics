@@ -18,7 +18,7 @@ def plot_poisson(sizes:list, x_name : str, y_name : str):
         n = poisson(10)                                                 #freeze the distribution
         
         x = np.arange(poisson.ppf(0.01, 10), poisson.ppf(0.99, 10))     #ppf returns the value x of the variable that has a given cumulative distribution probability (cdf)
-        y = n.pmf(x)                                                    #pdf returns the respective probability values
+        y = n.pmf(x)                                                    
         
         ax.plot(x, y, 'k', lw  = 2)
         ax.hist(hist, density=True, bins='auto', histtype='stepfilled', alpha=0.5)
@@ -27,8 +27,8 @@ def plot_poisson(sizes:list, x_name : str, y_name : str):
         ax.set_ylabel(y_name)
         ax.set_title("size: " + str(size))
 
-        plt.savefig(FOLDER_FOR_SAVE + "poisson" + str(size) + ".png")
-        plt.show()
+        plt.savefig(FOLDER_FOR_SAVE + "1__" +"poisson" + str(size) + ".png")
+        
 
 def plot_normal(sizes:list, x_name : str, y_name : str):
     for size in sizes:
@@ -46,7 +46,7 @@ def plot_normal(sizes:list, x_name : str, y_name : str):
         ax.set_ylabel(y_name)
         ax.set_title("size: " + str(size))
 
-        plt.savefig(FOLDER_FOR_SAVE + "norm" +str(size)+".png")
+        plt.savefig(FOLDER_FOR_SAVE + "1__" +"norm" +str(size)+".png")
 
 def plot_cauchy(sizes:list, x_name : str, y_name : str):
     for size in sizes:
@@ -64,7 +64,7 @@ def plot_cauchy(sizes:list, x_name : str, y_name : str):
         ax.set_ylabel(y_name)
         ax.set_title("size: " + str(size))
 
-        plt.savefig(FOLDER_FOR_SAVE + "cauchy" +str(size)+".png")
+        plt.savefig(FOLDER_FOR_SAVE + "1__" +"cauchy" +str(size)+".png")
 
 def plot_laplace(sizes:list, x_name : str, y_name : str):
     for size in sizes:
@@ -82,7 +82,7 @@ def plot_laplace(sizes:list, x_name : str, y_name : str):
         ax.set_ylabel(y_name)
         ax.set_title("size: " + str(size))
 
-        plt.savefig(FOLDER_FOR_SAVE + "laplace" +str(size)+".png")
+        plt.savefig(FOLDER_FOR_SAVE + "1__" +"laplace" +str(size)+".png")
 
 def plot_uniform(sizes:list, x_name : str, y_name : str):
     for size in sizes:
@@ -100,7 +100,7 @@ def plot_uniform(sizes:list, x_name : str, y_name : str):
         ax.set_ylabel(y_name)
         ax.set_title("size: " + str(size))
 
-        plt.savefig(FOLDER_FOR_SAVE + "uniform" +str(size)+".png")
+        plt.savefig(FOLDER_FOR_SAVE + "1__" + "uniform" +str(size)+".png")
 
 def do_task1(sizes:list):
     plot_uniform(sizes, "uniformNumbers", "Density")
