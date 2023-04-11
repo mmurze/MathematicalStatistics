@@ -10,6 +10,7 @@ from scipy.stats import laplace
 from scipy.stats import poisson
 from scipy.stats import uniform
 from statsmodels.distributions.empirical_distribution import ECDF
+import seaborn as sns
 
 FOLDER_FOR_SAVE = "graphics/"
 
