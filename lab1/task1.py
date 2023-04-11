@@ -102,11 +102,11 @@ def plot_uniform(sizes:list, x_name : str, y_name : str):
 
         plt.savefig(FOLDER_FOR_SAVE + "uniform" +str(size)+".png")
 
-def do_task1(sizes:list):
+def do_task1(sizes:list = [10, 50, 1000]):
     plot_uniform(sizes, "uniformNumbers", "Density")
     plot_laplace(sizes, "laplaceNumbers", "Density")
     plot_norm(sizes, "normalNumbers", "Density")
     plot_cauchy(sizes, "cauchyNumbers", "Density")
     plot_poisson(sizes, "poissonNumbers", "Density")
 
-do_task1([10, 50, 1000])
+

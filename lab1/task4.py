@@ -64,15 +64,12 @@ def ECDF_continius(sizes : list, rvs_cdf, left, right, title):
         plt.clf()
 
 
-def do_task4(sizes):
+def do_task4(sizes= [20, 60, 100]):
     ECDF_continius(sizes, normal_rvs_cdf, -4, 4, "Normal")
     ECDF_continius(sizes, poisson_rvs_cdf, 6, 14, "Poisson")
     ECDF_continius(sizes, cauchy_rvs_cdf, -4, 4, "Cauchy")
     ECDF_continius(sizes, laplace_rvs_cdf, -4, 4, "Laplace")
     ECDF_continius(sizes, uniform_rvs_cdf, -4, 4, "Uniform")
-
-# sizes = [20, 60, 100]
-# do_task4(sizes)
 
 
 def normal_kde_pdf(size, x):
@@ -131,12 +128,11 @@ def KDE(sizes : list, kde_pdf, left, right, title):
     
 
 
-def do_task42(sizes):
+def do_task42(sizes = [20, 60, 100]):
     KDE(sizes, poisson_kde_pdf, 6, 14, "Poisson")
     KDE(sizes, normal_kde_pdf, -4, 4, "Normal")
     KDE(sizes, cauchy_kde_pdf, -4, 4, "Cauchy")
     KDE(sizes, laplace_kde_pdf, -4, 4, "Laplace")
     KDE(sizes, uniform_kde_pdf, -4, 4, "Uniform")
 
-sizes = [20, 60, 100]
-do_task42(sizes)
+
