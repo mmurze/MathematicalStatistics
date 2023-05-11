@@ -2,6 +2,7 @@ import numpy as np
 import math as m
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 from math import gamma
 from scipy.stats import norm
@@ -63,15 +64,12 @@ def ECDF_continius(sizes : list, rvs_cdf, left, right, title):
         plt.clf()
 
 
-def do_task4(sizes):
+def do_task4(sizes= [20, 60, 100]):
     ECDF_continius(sizes, normal_rvs_cdf, -4, 4, "Normal")
     ECDF_continius(sizes, poisson_rvs_cdf, 6, 14, "Poisson")
     ECDF_continius(sizes, cauchy_rvs_cdf, -4, 4, "Cauchy")
     ECDF_continius(sizes, laplace_rvs_cdf, -4, 4, "Laplace")
     ECDF_continius(sizes, uniform_rvs_cdf, -4, 4, "Uniform")
-
-# sizes = [20, 60, 100]
-# do_task4(sizes)
 
 
 def normal_kde_pdf(size, x):
@@ -102,15 +100,15 @@ def uniform_kde_pdf(size, x):
 
 def KDE(sizes : list, kde_pdf, left, right, title):
     h = [0.5, 1, 2]
-    plt.subplots(3, 3, figsize = (10,10))
-    plt.subplots_adjust(wspace = 0.3, hspace = 0.5)
     z=1
     for k in range(len(sizes)):
         x = np.linspace(left, right, sizes[k])
         sample, pdf = kde_pdf(sizes[k], x)
+        plt.subplots(1, 3, figsize = (18,5))
+        plt.subplots_adjust(wspace = 0.3, hspace = 0.5)
 
         for i in range(len(h)):
-            plt.subplot(3, 3, z)
+            plt.subplot(1, 3, i+1)
             plt.plot(x, pdf, "r--", linewidth=2)
             sns.kdeplot(data=sample, bw_method='silverman', bw_adjust = h[i],
                             fill = True, common_norm=True,linewidth=1, label='kde')
@@ -121,16 +119,20 @@ def KDE(sizes : list, kde_pdf, left, right, title):
             plt.legend(loc = "upper left")
             plt.xlim(left, right)
             z +=1
-            
-    # plt.savefig(FOLDER_FOR_SAVE+"4_2_" +title +".png")
-    plt.show()
 
-def do_task42(sizes):
+        if not os.path.isdir("graphics/"):
+            os.makedirs("graphics/")
+        plt.savefig(FOLDER_FOR_SAVE+"4_2_" +title + str(sizes[k]) + ".png")
+
+            
+    
+
+
+def do_task42(sizes = [20, 60, 100]):
     KDE(sizes, poisson_kde_pdf, 6, 14, "Poisson")
     KDE(sizes, normal_kde_pdf, -4, 4, "Normal")
     KDE(sizes, cauchy_kde_pdf, -4, 4, "Cauchy")
     KDE(sizes, laplace_kde_pdf, -4, 4, "Laplace")
     KDE(sizes, uniform_kde_pdf, -4, 4, "Uniform")
 
-sizes = [20, 60, 100]
-do_task42(sizes)
+

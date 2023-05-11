@@ -65,28 +65,25 @@ def print_table_rows(E, D, E_name, D_name):
     for e in range(1, len(E)):
         strTmp += " & " + str(E[e])
     strTmp += " \\\\"
-    print(strTmp)
-    print("\\hline")
+    print(strTmp + "\\hline")
 
     strTmp = D_name + " & " + str(D[0])
     for d in range(1, len(D)):
         strTmp += " & " + str(D[d])
     strTmp += " \\\\"
+    print(strTmp + "\\hline")
+
+    strTmp = "E(z) \pm \sqrt{D(z)}"
+    for i in range(len(E)):
+        strTmp += " & [" + str(round(E[i] - m.sqrt(D[i]), 6)) + ";"
+    strTmp += " \\\\"
     print(strTmp)
-    print("\\hline")
 
-    # strTmp = "E(z) \pm \sqrt{D(z)}"
-    # for i in range(len(E)):
-    #     strTmp += " & [" + str(round(E[i] - m.sqrt(D[i]), 6)) + ";"
-    # strTmp += " \\\\"
-    # print(strTmp)
-
-    # strTmp = ""
-    # for i in range(len(E)):
-    #     strTmp += " & " + str(round(E[i] + m.sqrt(D[i]), 6)) + "]"
-    # strTmp += " \\\\"
-    # print(strTmp)
-    # print("\\hline")
+    strTmp = ""
+    for i in range(len(E)):
+        strTmp += " & " + str(round(E[i] + m.sqrt(D[i]), 6)) + "]"
+    strTmp += " \\\\"
+    print(strTmp + "\\hline")
     return
 
 def print_table(sizes : list, rvs_and_name):
@@ -106,14 +103,15 @@ def print_table(sizes : list, rvs_and_name):
             E.append(np.around(mean(column), 6))
             D.append(np.around(dispersion(column), 6))
         print_table_rows(E, D, rvs_and_name(0)[1] + " E(z) " + str(size), rvs_and_name(0)[1] + " D(z) " + str(size))
+
+    print("\n\n")
     return
 
-def do_task2(sizes):
-    print_table(sizes, normal_rvs)
-    print_table(sizes, poisson_rvs)
-    print_table(sizes, cauchy_rvs)
-    print_table(sizes, laplace_rvs)
+def do_task2(sizes = [10, 100, 1000]):
+    # print_table(sizes, normal_rvs)
+    # print_table(sizes, poisson_rvs)
+    # print_table(sizes, cauchy_rvs)
+    # print_table(sizes, laplace_rvs)
     print_table(sizes, uniform_rvs)
 
-sizes = [10, 100, 1000]
-do_task2(sizes)
+do_task2()

@@ -62,15 +62,14 @@ def plot_boxplot_Tukey(sizes : list, rvs_and_name):
     ax.boxplot(result, vert = 0)
     ax.set_yticklabels(sizes)
     plt.title(rvs_and_name(0)[1])
-    plt.savefig(FOLDER_FOR_SAVE+"3__" + rvs_and_name(0)[1] +".png")
+    # plt.savefig(FOLDER_FOR_SAVE+"3__" + rvs_and_name(0)[1] +".png")
     plt.clf()
 
-def do_task3(sizes):
+def do_task3(sizes = [20, 100]):
     plot_boxplot_Tukey(sizes, normal_rvs)
     plot_boxplot_Tukey(sizes, poisson_rvs)
     plot_boxplot_Tukey(sizes, cauchy_rvs)
     plot_boxplot_Tukey(sizes, laplace_rvs)
     plot_boxplot_Tukey(sizes, uniform_rvs)
 
-sizes = [20, 100]
-do_task3(sizes)
+do_task3()
